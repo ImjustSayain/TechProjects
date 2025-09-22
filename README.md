@@ -19,12 +19,12 @@ A practical project demonstrating Continuous Integration and Continuous Deployme
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/your-repo-name.git
+    git clone https://github.com/ImJustSayain
     ```
 
 2.  **Run the tests locally:**
     ```bash
-    python test.py
+    CICDAutomation.py
     ```
 
 ## 📁 Project Structure
