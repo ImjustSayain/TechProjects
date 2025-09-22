@@ -1,0 +1,39 @@
+name: CI/CD Pipeline
+
+# This workflow will run on every push to the "main" branch
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  # Job 1: Test the code
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+
+      - name: Run tests
+        run: python test.py
+
+  # Job 2: Deploy the code (only runs if the test job passes)
+  deploy:
+    # Add a dependency on the test job
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to local artifact (Simulated Deployment)
+        run: |
+          echo "✅ Simulation: Deploying code to a server..."
+          mkdir -p deployment_artifact
+          cp index.html deployment_artifact/
+          echo "Deployment complete! Contents:"
+          ls -la deployment_artifact/
